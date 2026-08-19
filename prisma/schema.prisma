@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// One row per connected provider (single-user app).
+model ProviderAccount {
+  id              String    @id @default(cuid())
+  provider        String    @unique // spotify | tidal | youtube
+  providerUserId  String?
+  displayName     String?
+  accessTokenEnc  String
+  refreshTokenEnc String?
+  expiresAt       DateTime?
+  scopes          String?
+  meta            String? // JSON: provider extras (e.g. TIDAL countryCode)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Confirmed cross-provider track mappings, reused on later transfers.
+model TrackMap {
+  id             String   @id @default(cuid())
+  sourceProvider String
+  sourceTrackId  String
+  targetProvider String
+  targetTrackId  String
+  targetTitle    String?
+  targetArtists  String? // JSON string[]
+  targetUrl      String?
+  confidence     Int
+  reason         String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([sourceProvider, sourceTrackId, targetProvider])
+}
+
+// Cached provider search results (saves YouTube quota on retries).
+model SearchCache {
+  id        String   @id @default(cuid())
+  provider  String
+  queryKey  String
+  results   String // JSON ProviderTrack[]
+  createdAt DateTime @default(now())
+
+  @@unique([provider, queryKey])
+}
+
+model TransferJob {
+  id                 String    @id @default(cuid())
+  sourceProvider     String
+  sourcePlaylistId   String
+  sourcePlaylistName String
+  targetProvider     String
+  mode               String // create_new | append
+  targetPlaylistId   String?
+  targetPlaylistName String?
+  targetPlaylistUrl  String?
+  status             String // matching | needs_review | executing | completed | partial | failed | canceled
+  phase              String?
+  totalItems         Int       @default(0)
+  matchedItems       Int       @default(0)
+  reviewItems        Int       @default(0)
+  unmatchedItems     Int       @default(0)
+  processedItems     Int       @default(0)
+  addedItems         Int       @default(0)
+  skippedItems       Int       @default(0)
+  failedItems        Int       @default(0)
+  errorMessage       String?
+  createdAt          DateTime  @default(now())
+  startedAt          DateTime?
+  completedAt        DateTime?
+  items              TransferItem[]
+}
+
+model TransferItem {
+  id            String  @id @default(cuid())
+  jobId         String
+  position      Int
+  sourceTrackId String
+  title         String
+  artists       String // JSON string[]
+  album         String?
+  durationMs    Int?
+  isrc          String?
+  sourceUrl     String?
+  imageUrl      String?
+  targetTrackId String?
+  targetTitle   String?
+  targetArtists String? // JSON string[]
+  targetUrl     String?
+  confidence    Int?
+  reason        String?
+  candidates    String? // JSON ProviderTrack-with-score[]
+  status        String // pending | auto_matched | needs_review | unmatched | skipped | added | failed
+  errorMessage  String?
+
+  job TransferJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId, position])
+  @@index([jobId, status])
+}
