@@ -14,11 +14,11 @@ and never sent to the browser.
 2. **New transfer** → pick source playlist → pick target provider → the app
    matches every track against the target catalog:
    - previously confirmed mappings are reused instantly,
-   - then exact **ISRC** lookup (Spotify/TIDAL),
+   - then exact track-ID lookup where the provider supports it,
    - then text search scored by title/artist/duration/album similarity.
-3. Review: ≥90 confidence auto-matches, 70–89 needs your confirmation, below
-   that is unmatched. You can pick another candidate, paste a track URL/id
-   manually, or skip.
+3. Review: high-confidence matches auto-match, mid-confidence needs your
+   confirmation, the rest is unmatched. You can pick another candidate, paste
+   a track URL/id manually, or skip.
 4. Execute: the playlist is created (or appended, skipping duplicates) and you
    get a report with a link plus any failures/skips.
 
@@ -40,39 +40,20 @@ Then open **http://127.0.0.1:3000** — use that exact origin, not
 
 ### Provider credentials (one-time)
 
-**Spotify** — <https://developer.spotify.com/dashboard>
+Create an app on each provider's developer portal and copy the credentials
+into `.env` (see `.env.example` for the exact variable names and redirect URIs
+to register):
 
-1. Create an app. Redirect URI: `http://127.0.0.1:3000/api/auth/spotify/callback`
-   (Spotify rejects `localhost`; the `127.0.0.1` loopback literal is required).
-2. Copy Client ID + Client Secret into `.env`.
-
-**YouTube** — <https://console.cloud.google.com>
-
-1. Create a project, enable **YouTube Data API v3**.
-2. Configure the OAuth consent screen (External + Testing is fine; add your own
-   Google account as a test user).
-3. Create an OAuth client (type: Web application) with redirect URI
-   `http://127.0.0.1:3000/api/auth/youtube/callback`.
-4. Copy Client ID + Client Secret into `.env`.
-
-**TIDAL** — <https://developer.tidal.com/dashboard>
-
-1. Create an app, enable scopes `user.read`, `playlists.read`,
-   `playlists.write`, `search.read`.
-2. Redirect URI: `http://127.0.0.1:3000/api/auth/tidal/callback`. If the
-   dashboard rejects a plain-HTTP URI for your app type, try `localhost` or a
-   dev-mode app — TIDAL's production apps require HTTPS redirects.
-3. Copy the Client ID into `.env` (TIDAL uses PKCE; no secret is needed).
+- **Spotify** — <https://developer.spotify.com/dashboard>
+- **YouTube** — <https://console.cloud.google.com> (enable YouTube Data API v3)
+- **TIDAL** — <https://developer.tidal.com/dashboard>
 
 ## Quotas & limitations worth knowing
 
-- **YouTube search is capped at ~100 calls/day** (its own quota bucket), and
-  each playlist insert costs 50 units of the separate 10k/day pool (~200 adds
-  per day). Matching a big playlist into YouTube may take multiple days —
-  search results are cached for 7 days, so re-running the same transfer
-  tomorrow resumes cheaply. The job tells you when quota ran out.
-- YouTube has no ISRC lookup, so YouTube matches are text/duration based;
-  auto-generated "Topic" uploads match best.
+- YouTube search/insert costs are generous per day, but each YouTube API call
+  consumes quota — large transfers into YouTube may need multiple days, and
+  search results are cached for 7 days so re-running a transfer resumes
+  cheaply. The job tells you when quota ran out.
 - TIDAL's rate limits are unpublished; the app backs off automatically on 429s.
 - Matches you confirm are remembered (`TrackMap`), so repeat transfers get
   faster and more accurate.
@@ -83,7 +64,7 @@ Then open **http://127.0.0.1:3000** — use that exact origin, not
 npm run dev        # dev server on http://127.0.0.1:3000
 npm run build      # production build
 npm start          # run the production build
-npm test           # vitest suite (58 tests, uses a throwaway prisma/test.db)
+npm test           # vitest suite (uses a throwaway prisma/test.db)
 npm run lint       # eslint
 npm run typecheck  # tsc --noEmit
 ```
@@ -97,5 +78,5 @@ npm run typecheck  # tsc --noEmit
 
 ## Project docs
 
-- [docs/SPEC.md](docs/SPEC.md) — architecture decisions, verified provider API
-  facts, and the build progress checklist.
+- [docs/SPEC.md](docs/SPEC.md) — architecture decisions, provider API facts,
+  and the build progress checklist.
