@@ -1,11 +1,11 @@
 {
   "communities": {
     "0": [
-      "src_server_auth_tokens",
-      "src_server_auth_tokens_notconnectederror",
       "src_server_auth_tokens_notconnectederror_constructor",
       "src_server_config_musicprovider",
+      "src_server_http",
       "src_server_http_fetchjson",
+      "src_server_http_fetchjsonoptions",
       "src_server_http_httperror",
       "src_server_http_httperror_constructor",
       "src_server_http_sleep",
@@ -68,6 +68,9 @@
       "tests_matcher_test_sourcetrack"
     ],
     "1": [
+      "src_app_api_auth_provider_route",
+      "src_app_api_auth_provider_route_get",
+      "src_app_api_auth_provider_route_runtime",
       "src_app_api_health_route",
       "src_app_api_health_route_dynamic",
       "src_app_api_health_route_get",
@@ -111,73 +114,17 @@
       "src_server_api_helpers_errorresponse",
       "src_server_api_helpers_parseprovider",
       "src_server_auth_tokens_getproviderctx",
-      "src_server_config_ismusicprovider",
+      "src_server_auth_tokens_notconnectederror",
       "src_server_db",
       "src_server_db_globalforprisma",
       "src_server_db_prisma",
-      "src_server_matching_matcher_cachedsearch",
-      "src_server_matching_matcher_matchtrack",
-      "src_server_matching_matcher_savetrackmap",
       "src_server_providers_registry_getadapter",
-      "src_server_transfer_runner",
-      "src_server_transfer_runner_asprovider",
-      "src_server_transfer_runner_globalrunner",
-      "src_server_transfer_runner_isquotaerror",
-      "src_server_transfer_runner_jobcanceled",
-      "src_server_transfer_runner_runexecute",
-      "src_server_transfer_runner_runmatching",
-      "src_server_transfer_runner_startexecuteinbackground",
-      "src_server_transfer_runner_startmatchinginbackground",
       "src_server_transfer_serialize",
       "src_server_transfer_serialize_parsejson",
       "src_server_transfer_serialize_serializeitem",
       "src_server_transfer_serialize_serializejob"
     ],
     "2": [
-      "src_app_api_auth_provider_callback_route",
-      "src_app_api_auth_provider_callback_route_get",
-      "src_app_api_auth_provider_callback_route_redirecthome",
-      "src_app_api_auth_provider_callback_route_runtime",
-      "src_app_api_auth_provider_route",
-      "src_app_api_auth_provider_route_get",
-      "src_app_api_auth_provider_route_runtime",
-      "src_app_api_providers_route",
-      "src_app_api_providers_route_dynamic",
-      "src_app_api_providers_route_get",
-      "src_app_api_providers_route_runtime",
-      "src_server_auth_oauth",
-      "src_server_auth_oauth_buildauthorizeurl",
-      "src_server_auth_oauth_exchangecode",
-      "src_server_auth_oauth_oauthdescriptor",
-      "src_server_auth_oauth_oauthpending",
-      "src_server_auth_oauth_redirecturi",
-      "src_server_auth_oauth_refreshaccesstoken",
-      "src_server_auth_oauth_tokenrequest",
-      "src_server_auth_oauth_tokenresponse",
-      "src_server_auth_tokens_saveprovideraccount",
-      "src_server_config",
-      "src_server_config_appurl",
-      "src_server_config_provider_labels",
-      "src_server_config_providerconfigured",
-      "src_server_config_providercredentials",
-      "src_server_config_providers",
-      "src_server_crypto",
-      "src_server_crypto_decrypt",
-      "src_server_crypto_encrypt",
-      "src_server_crypto_key",
-      "src_server_http",
-      "src_server_http_fetchjsonoptions",
-      "src_server_http_formbody",
-      "tests_crypto_test",
-      "tests_runner_test",
-      "tests_runner_test_addcall",
-      "tests_runner_test_buildadapters",
-      "tests_runner_test_seedaccounts",
-      "tests_runner_test_sourcetracks",
-      "tests_runner_test_tidalalpha",
-      "tests_runner_test_tidalbeta"
-    ],
-    "3": [
       "src_app_history_page",
       "src_app_history_page_history",
       "src_app_page",
@@ -217,10 +164,12 @@
       "src_lib_types_providerstatus",
       "src_lib_types_track"
     ],
-    "4": [
+    "3": [
       "src_server_matching_matcher",
+      "src_server_matching_matcher_cachedsearch",
       "src_server_matching_matcher_matchoutcome",
       "src_server_matching_matcher_matchstatus",
+      "src_server_matching_matcher_matchtrack",
       "src_server_matching_matcher_outcomefor",
       "src_server_matching_matcher_sourcetrackformatch",
       "src_server_matching_normalize",
@@ -251,6 +200,39 @@
       "tests_score_test",
       "tests_score_test_candidate",
       "tests_score_test_source"
+    ],
+    "4": [
+      "src_app_api_auth_provider_callback_route",
+      "src_app_api_auth_provider_callback_route_get",
+      "src_app_api_auth_provider_callback_route_redirecthome",
+      "src_app_api_auth_provider_callback_route_runtime",
+      "src_app_api_providers_route",
+      "src_app_api_providers_route_dynamic",
+      "src_app_api_providers_route_get",
+      "src_app_api_providers_route_runtime",
+      "src_server_auth_oauth",
+      "src_server_auth_oauth_buildauthorizeurl",
+      "src_server_auth_oauth_exchangecode",
+      "src_server_auth_oauth_oauthdescriptor",
+      "src_server_auth_oauth_oauthpending",
+      "src_server_auth_oauth_redirecturi",
+      "src_server_auth_oauth_refreshaccesstoken",
+      "src_server_auth_oauth_tokenrequest",
+      "src_server_auth_oauth_tokenresponse",
+      "src_server_auth_tokens",
+      "src_server_auth_tokens_saveprovideraccount",
+      "src_server_config",
+      "src_server_config_appurl",
+      "src_server_config_provider_labels",
+      "src_server_config_providerconfigured",
+      "src_server_config_providercredentials",
+      "src_server_config_providers",
+      "src_server_crypto",
+      "src_server_crypto_decrypt",
+      "src_server_crypto_encrypt",
+      "src_server_crypto_key",
+      "src_server_http_formbody",
+      "tests_crypto_test"
     ],
     "5": [
       "ref_dom",
@@ -337,6 +319,26 @@
       "vitest_coverage_v8"
     ],
     "8": [
+      "src_server_config_ismusicprovider",
+      "src_server_matching_matcher_savetrackmap",
+      "src_server_transfer_runner",
+      "src_server_transfer_runner_asprovider",
+      "src_server_transfer_runner_globalrunner",
+      "src_server_transfer_runner_isquotaerror",
+      "src_server_transfer_runner_jobcanceled",
+      "src_server_transfer_runner_runexecute",
+      "src_server_transfer_runner_runmatching",
+      "src_server_transfer_runner_startexecuteinbackground",
+      "src_server_transfer_runner_startmatchinginbackground",
+      "tests_runner_test",
+      "tests_runner_test_addcall",
+      "tests_runner_test_buildadapters",
+      "tests_runner_test_seedaccounts",
+      "tests_runner_test_sourcetracks",
+      "tests_runner_test_tidalalpha",
+      "tests_runner_test_tidalbeta"
+    ],
+    "9": [
       "tests_api_flow_test",
       "tests_api_flow_test_json",
       "tests_api_flow_test_makeadapters",
@@ -347,50 +349,60 @@
       "tests_api_flow_test_tidalalpha",
       "tests_api_flow_test_tidalmanual"
     ],
-    "9": [
+    "10": [
+      "prisma_migrations_20260819034926_init_migration",
+      "prisma_migrations_20260819034926_init_migration_provideraccount",
+      "prisma_migrations_20260819034926_init_migration_searchcache",
+      "prisma_migrations_20260819034926_init_migration_trackmap",
+      "prisma_migrations_20260819034926_init_migration_transferitem",
+      "prisma_migrations_20260819034926_init_migration_transferjob"
+    ],
+    "11": [
       "src_app_layout",
       "src_app_layout_geistmono",
       "src_app_layout_geistsans",
       "src_app_layout_metadata",
       "src_app_layout_rootlayout"
     ],
-    "10": [
+    "12": [
       "tests_global_setup",
       "tests_global_setup_dbfile",
       "tests_global_setup_setup"
     ],
-    "11": [
+    "13": [
       "eslint_config",
       "eslint_config_eslintconfig"
     ],
-    "12": [
+    "14": [
       "next_config",
       "next_config_nextconfig"
     ],
-    "13": [
+    "15": [
       "postcss_config",
       "postcss_config_config"
     ],
-    "14": [
+    "16": [
       "vitest_config"
     ]
   },
   "cohesion": {
-    "0": 0.06634615384615385,
-    "1": 0.08432539682539683,
-    "2": 0.09175377468060394,
-    "3": 0.12375533428165007,
-    "4": 0.14583333333333334,
+    "0": 0.06682692307692308,
+    "1": 0.09292929292929293,
+    "2": 0.12375533428165007,
+    "3": 0.13949579831932774,
+    "4": 0.14623655913978495,
     "5": 0.06896551724137931,
     "6": 0.07142857142857142,
     "7": 0.09523809523809523,
-    "8": 0.3055555555555556,
-    "9": 0.4,
-    "10": 0.6666666666666666,
-    "11": 1.0,
-    "12": 1.0,
+    "8": 0.1830065359477124,
+    "9": 0.3055555555555556,
+    "10": 0.4,
+    "11": 0.4,
+    "12": 0.6666666666666666,
     "13": 1.0,
-    "14": 1.0
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0
   },
   "gods": [
     {
@@ -409,18 +421,13 @@
       "degree": 16
     },
     {
-      "id": "src_server_api_helpers_parseprovider",
-      "label": "parseProvider()",
-      "degree": 15
-    },
-    {
       "id": "src_server_api_helpers_apierror",
       "label": "ApiError",
       "degree": 15
     },
     {
-      "id": "src_server_db_prisma",
-      "label": "prisma",
+      "id": "src_server_api_helpers_parseprovider",
+      "label": "parseProvider()",
       "degree": 15
     },
     {
@@ -429,18 +436,23 @@
       "degree": 15
     },
     {
+      "id": "src_server_db_prisma",
+      "label": "prisma",
+      "degree": 15
+    },
+    {
       "id": "src_server_auth_tokens_getproviderctx",
       "label": "getProviderCtx()",
       "degree": 14
     },
     {
-      "id": "src_server_http_fetchjson",
-      "label": "fetchJson()",
+      "id": "src_server_providers_types_providertrack",
+      "label": "ProviderTrack",
       "degree": 13
     },
     {
-      "id": "src_server_providers_types_providertrack",
-      "label": "ProviderTrack",
+      "id": "src_server_http_fetchjson",
+      "label": "fetchJson()",
       "degree": 13
     }
   ],
@@ -454,51 +466,51 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
-      "why": "connects across different repos/directories; peripheral node `seedAccounts()` unexpectedly reaches hub `encrypt()`"
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `seedAccounts()` unexpectedly reaches hub `encrypt()`"
     },
     {
-      "source": "GET()",
-      "target": "parseProvider()",
+      "source": "OAuthDescriptor",
+      "target": "providerCredentials()",
       "source_files": [
-        "src/app/api/auth/[provider]/callback/route.ts",
-        "src/server/api-helpers.ts"
+        "src/server/auth/oauth.ts",
+        "src/server/config.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "peripheral node `OAuthDescriptor` unexpectedly reaches hub `providerCredentials()`"
+    },
+    {
+      "source": "tokenRequest()",
+      "target": "fetchJson()",
+      "source_files": [
+        "src/server/auth/oauth.ts",
+        "src/server/http.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "bridges separate communities"
     },
     {
-      "source": "GET()",
-      "target": "getAdapter()",
+      "source": "POST()",
+      "target": "startExecuteInBackground()",
       "source_files": [
-        "src/app/api/auth/[provider]/callback/route.ts",
-        "src/server/providers/registry.ts"
+        "src/app/api/transfer/jobs/[id]/execute/route.ts",
+        "src/server/transfer/runner.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "bridges separate communities"
     },
     {
-      "source": "GET()",
+      "source": "DELETE()",
       "target": "errorResponse()",
       "source_files": [
-        "src/app/api/auth/[provider]/route.ts",
+        "src/app/api/transfer/jobs/[id]/route.ts",
         "src/server/api-helpers.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "GET()",
-      "target": "parseProvider()",
-      "source_files": [
-        "src/app/api/auth/[provider]/route.ts",
-        "src/server/api-helpers.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
+      "why": "peripheral node `DELETE()` unexpectedly reaches hub `errorResponse()`"
     }
   ],
   "tokens": {

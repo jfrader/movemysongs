@@ -322,5 +322,11 @@
     "seen": 1788381042.556493,
     "ast_hash": "1f1270d9273fe28e14a4b5007a03cf9d",
     "semantic_hash": "1f1270d9273fe28e14a4b5007a03cf9d"
+  },
+  "prisma/migrations/20260819034926_init/migration.sql": {
+    "mtime": 1787111366.738997,
+    "seen": 1788382017.061977,
+    "ast_hash": "ec7ef46641e088d2ae7b2116e3d676f3",
+    "semantic_hash": "ec7ef46641e088d2ae7b2116e3d676f3"
   }
 }
