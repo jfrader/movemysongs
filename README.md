@@ -1,5 +1,10 @@
 # MoveMySongs
 
+[![npm version](https://img.shields.io/npm/v/movemysongs?style=flat)](https://www.npmjs.com/package/movemysongs)
+[![npm downloads](https://img.shields.io/npm/dm/movemysongs?style=flat)](https://www.npmjs.com/package/movemysongs)
+[![last commit](https://img.shields.io/github/last-commit/jfrader/movemysongs?style=flat)](https://github.com/jfrader/movemysongs/commits)
+[![node](https://img.shields.io/node/v/movemysongs?style=flat)](https://www.npmjs.com/package/movemysongs)
+
 Personal playlist transfer app for **Spotify ⇄ TIDAL ⇄ YouTube**. Runs locally
 with your own API credentials — connect your accounts, pick a source playlist,
 review the track matches, and create (or append to) the equivalent playlist on
